@@ -211,6 +211,11 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">sprites/player1.png</key>
+            <key type="filename">sprites/player2.png</key>
+            <key type="filename">sprites/player3.png</key>
+            <key type="filename">sprites/player4.png</key>
+            <key type="filename">sprites/player5.png</key>
             <key type="filename">sprites/playon.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

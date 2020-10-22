@@ -21,14 +21,42 @@ export default class WorldScene extends Phaser.Scene {
    */
   create() {
     this.cameras.main.fadeIn(100);
+    const stars = this.add.group({
+      key: 'sprites',
+      frame: ['star1', 'star2', 'star3', 'star4'],
+      repeat: 25,
+    });
+    const rect = new Phaser.Geom.Rectangle(0, 0, 1024, 576);
+    // eslint-disable-next-line new-cap
+    Phaser.Actions.RandomRectangle(stars.getChildren(), rect);
+    stars.getChildren().forEach((star) => {
+      star.rotation = Math.random() * 3.14;
+      star.scale = Math.random() * 0.2 + 0.2;
+    });
     this.planet = this.add.sprite(512, 288, 'sprites', 'planet');
-    this.player = this.add.sprite(512, 150, 'sprites', 'player');
+    this.player = this.add.sprite(512, 150, 'sprites', 'player1');
     this.player.currentAngle = -90;
-    this.player.jumpOffset = 0;
+    this.player.jumpOffset = 100;
     this.player.jumpForce = 0;
+    this.anims.create({
+      key: 'player',
+      frames: [
+        {key: 'sprites', frame: 'player1'},
+        {key: 'sprites', frame: 'player2'},
+        {key: 'sprites', frame: 'player3'},
+        {key: 'sprites', frame: 'player4'},
+        {key: 'sprites', frame: 'player5'},
+        {key: 'sprites', frame: 'player4'},
+        {key: 'sprites', frame: 'player3'},
+        {key: 'sprites', frame: 'player2'},
+      ],
+      frameRate: 15,
+      repeat: -1,
+    });
+    this.player.play('player');
     this.input.on('pointerdown', (e) => {
       if (!this.player.jumpOffset) {
-        this.player.jumpForce = 12;
+        this.player.jumpForce = 10;
       }
     }, this);
   }
@@ -66,7 +94,7 @@ export default class WorldScene extends Phaser.Scene {
     const radians = Phaser.Math.DegToRad(this.player.currentAngle);
 
     // determining the distance from the center
-    const distanceFromCenter = 137 + this.player.jumpOffset;
+    const distanceFromCenter = 73 + this.player.jumpOffset;
 
     // position the player using trigonometry
     this.player.x = this.planet.x + distanceFromCenter * Math.cos(radians);
