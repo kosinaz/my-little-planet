@@ -1,0 +1,36 @@
+{"frames": [
+
+{
+	"filename": "planet",
+	"frame": {"x":0,"y":0,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+{
+	"filename": "player",
+	"frame": {"x":0,"y":251,"w":25,"h":25},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":25,"h":25},
+	"sourceSize": {"w":25,"h":25}
+},
+{
+	"filename": "playon",
+	"frame": {"x":26,"y":251,"w":96,"h":96},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":96,"h":96},
+	"sourceSize": {"w":96,"h":96}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "sprites.png",
+	"format": "RGBA8888",
+	"size": {"w":250,"h":347},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:9cd53f5393fa43472264c5808ba21a30:ca504cded3c5f9035b2cc89cc1ecd7dd:1eabdf11f75e3a4fe3147baf7b5be24b$"
+}
+}
