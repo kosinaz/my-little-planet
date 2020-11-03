@@ -64,6 +64,6 @@ export default class LoadScene extends Phaser.Scene {
    * @memberof LoadScene
    */
   create() {
-    this.scene.start('TitleScene');
+    this.scene.start('WorldScene');
   }
 }
