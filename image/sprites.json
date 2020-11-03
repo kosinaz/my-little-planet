@@ -10,11 +10,27 @@
 },
 {
 	"filename": "pickup1",
-	"frame": {"x":134,"y":0,"w":32,"h":30},
+	"frame": {"x":165,"y":0,"w":32,"h":30},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":30},
 	"sourceSize": {"w":32,"h":30}
+},
+{
+	"filename": "pickup3",
+	"frame": {"x":198,"y":0,"w":32,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":30},
+	"sourceSize": {"w":32,"h":30}
+},
+{
+	"filename": "pickup4",
+	"frame": {"x":134,"y":0,"w":30,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":32},
+	"sourceSize": {"w":30,"h":32}
 },
 {
 	"filename": "planet",
@@ -111,6 +127,6 @@
 	"format": "RGBA8888",
 	"size": {"w":256,"h":934},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:58206e0e8a5e4669d162d6af33053b8d:b26d7147b73f83ea504bce5b190b3885:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f8282629beaea3481c72b8f68eea9684:2c832213434f22818b484d72c8d132a1:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

@@ -35,11 +35,13 @@ export default class WorldScene extends Phaser.Scene {
     this.planet = this.add.sprite(512, 288, 'sprites', 'planet');
     this.planet.setInteractive();
     this.planet.on('pointerdown', (e) => {
-      const pickup = this.add.sprite(512, 288, 'sprites', 'pickup1');
-      this.pickups.push(pickup);
-      pickup.currentAngle = Math.random() * 360;
-      pickup.jumpOffset = 0;
-      pickup.jumpForce = 16;
+      for (let i = 0; i < this.pickup1level; i += 1) {
+        const pickup = this.add.sprite(512, 288, 'sprites', 'pickup1');
+        this.pickups.push(pickup);
+        pickup.currentAngle = Math.random() * 360;
+        pickup.jumpOffset = 0;
+        pickup.jumpForce = 16;
+      }
     }, this);
     this.player = this.add.sprite(512, 150, 'sprites', 'player1');
     this.player.currentAngle = -90;
@@ -65,6 +67,7 @@ export default class WorldScene extends Phaser.Scene {
       fontSize: '128px',
       fontFamily: 'font',
     }).setOrigin(0.5);
+
     this.autocost = 25;
     this.autocostText = this.add.text(50, 20, this.autocost, {
       fontSize: '128px',
@@ -83,6 +86,24 @@ export default class WorldScene extends Phaser.Scene {
     }, this);
     this.autolevel = 0;
     this.autotime = 0;
+
+    this.pickup1cost = 150;
+    this.pickup1costText = this.add.text(50, 70, this.pickup1cost, {
+      fontSize: '128px',
+      fontFamily: 'font',
+    }).setOrigin(0, 0.5);
+    this.pickup1Button = this.add.sprite(20, 70, 'sprites', 'pickup1');
+    this.pickup1Button.setInteractive();
+    this.pickup1Button.on('pointerdown', (e) => {
+      if (this.pickup1cost < this.point) {
+        this.point -= this.pickup1cost;
+        this.pickup1cost *= 2;
+        this.pickup1level += 1;
+        this.pickup1costText.text = this.pickup1cost;
+        this.pointText.text = this.point;
+      }
+    }, this);
+    this.pickup1level = 1;
   }
 
   /**
@@ -93,13 +114,14 @@ export default class WorldScene extends Phaser.Scene {
   update() {
     this.autotime += 1;
     if (this.autolevel > 0 && this.autotime > 100 / this.autolevel) {
-      const pickup = this.add.sprite(512, 288, 'sprites', 'pickup1');
-      this.pickups.push(pickup);
-      pickup.currentAngle = Math.random() * 360;
-      pickup.jumpOffset = 0;
-      pickup.jumpForce = 16;
+      for (let i = 0; i < this.pickup1level; i += 1) {
+        const pickup = this.add.sprite(512, 288, 'sprites', 'pickup1');
+        this.pickups.push(pickup);
+        pickup.currentAngle = Math.random() * 360;
+        pickup.jumpOffset = 0;
+        pickup.jumpForce = 16;
+      }
       this.autotime = 0;
-      console.log('s');
     }
     this.pickups.forEach((pickup) => {
       // adjusting player jump offset
