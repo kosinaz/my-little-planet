@@ -61,10 +61,28 @@ export default class WorldScene extends Phaser.Scene {
     this.player.play('player');
     this.pickups = [];
     this.point = 0;
-    this.pointText = this.add.text(512, 20, '0', {
-      fontSize: '124px',
+    this.pointText = this.add.text(512, 20, this.point, {
+      fontSize: '128px',
       fontFamily: 'font',
     }).setOrigin(0.5);
+    this.autocost = 25;
+    this.autocostText = this.add.text(50, 20, this.autocost, {
+      fontSize: '128px',
+      fontFamily: 'font',
+    }).setOrigin(0, 0.5);
+    this.autoButton = this.add.sprite(20, 20, 'sprites', 'auto');
+    this.autoButton.setInteractive();
+    this.autoButton.on('pointerdown', (e) => {
+      if (this.autocost < this.point) {
+        this.point -= this.autocost;
+        this.autocost *= 2;
+        this.autolevel += 1;
+        this.autocostText.text = this.autocost;
+        this.pointText.text = this.point;
+      }
+    }, this);
+    this.autolevel = 0;
+    this.autotime = 0;
   }
 
   /**
@@ -73,6 +91,16 @@ export default class WorldScene extends Phaser.Scene {
    * @memberof WorldScene
    */
   update() {
+    this.autotime += 1;
+    if (this.autolevel > 0 && this.autotime > 100 / this.autolevel) {
+      const pickup = this.add.sprite(512, 288, 'sprites', 'pickup1');
+      this.pickups.push(pickup);
+      pickup.currentAngle = Math.random() * 360;
+      pickup.jumpOffset = 0;
+      pickup.jumpForce = 16;
+      this.autotime = 0;
+      console.log('s');
+    }
     this.pickups.forEach((pickup) => {
       // adjusting player jump offset
       pickup.jumpOffset += pickup.jumpForce;
