@@ -51,6 +51,22 @@ export default class WorldScene extends Phaser.Scene {
         pickup.jumpForce = 16;
         pickup.value = 10;
       }
+      for (let i = 0; i < this.pickup3level; i += 1) {
+        const pickup = this.add.sprite(512, 288, 'sprites', 'pickup3');
+        this.pickups.push(pickup);
+        pickup.currentAngle = Math.random() * 360;
+        pickup.jumpOffset = 0;
+        pickup.jumpForce = 16;
+        pickup.value = 100;
+      }
+      for (let i = 0; i < this.pickup4level; i += 1) {
+        const pickup = this.add.sprite(512, 288, 'sprites', 'pickup4');
+        this.pickups.push(pickup);
+        pickup.currentAngle = Math.random() * 360;
+        pickup.jumpOffset = 0;
+        pickup.jumpForce = 16;
+        pickup.value = 1000;
+      }
     }, this);
     this.player = this.add.sprite(512, 150, 'sprites', 'player1');
     this.player.currentAngle = -90;
@@ -131,6 +147,43 @@ export default class WorldScene extends Phaser.Scene {
       }
     }, this);
     this.pickup2level = 0;
+    this.pickup1level = 1;
+
+    this.pickup3cost = 5400;
+    this.pickup3costText = this.add.text(50, 170, this.pickup3cost, {
+      fontSize: '128px',
+      fontFamily: 'font',
+    }).setOrigin(0, 0.5);
+    this.pickup3Button = this.add.sprite(20, 170, 'sprites', 'pickup3');
+    this.pickup3Button.setInteractive();
+    this.pickup3Button.on('pointerdown', (e) => {
+      if (this.pickup3cost < this.point) {
+        this.point -= this.pickup3cost;
+        this.pickup3cost *= 2;
+        this.pickup3level += 1;
+        this.pickup3costText.text = this.pickup3cost;
+        this.pointText.text = this.point;
+      }
+    }, this);
+    this.pickup3level = 0;
+
+    this.pickup4cost = 32400;
+    this.pickup4costText = this.add.text(50, 220, this.pickup4cost, {
+      fontSize: '128px',
+      fontFamily: 'font',
+    }).setOrigin(0, 0.5);
+    this.pickup4Button = this.add.sprite(20, 220, 'sprites', 'pickup4');
+    this.pickup4Button.setInteractive();
+    this.pickup4Button.on('pointerdown', (e) => {
+      if (this.pickup4cost < this.point) {
+        this.point -= this.pickup4cost;
+        this.pickup4cost *= 2;
+        this.pickup4level += 1;
+        this.pickup4costText.text = this.pickup4cost;
+        this.pointText.text = this.point;
+      }
+    }, this);
+    this.pickup4level = 0;
   }
 
   /**
@@ -156,6 +209,22 @@ export default class WorldScene extends Phaser.Scene {
         pickup.jumpOffset = 0;
         pickup.jumpForce = 16;
         pickup.value = 10;
+      }
+      for (let i = 0; i < this.pickup3level; i += 1) {
+        const pickup = this.add.sprite(512, 288, 'sprites', 'pickup3');
+        this.pickups.push(pickup);
+        pickup.currentAngle = Math.random() * 360;
+        pickup.jumpOffset = 0;
+        pickup.jumpForce = 16;
+        pickup.value = 100;
+      }
+      for (let i = 0; i < this.pickup4level; i += 1) {
+        const pickup = this.add.sprite(512, 288, 'sprites', 'pickup4');
+        this.pickups.push(pickup);
+        pickup.currentAngle = Math.random() * 360;
+        pickup.jumpOffset = 0;
+        pickup.jumpForce = 16;
+        pickup.value = 1000;
       }
       this.autotime = 0;
     }
