@@ -2,7 +2,7 @@
 
 {
 	"filename": "auto",
-	"frame": {"x":104,"y":0,"w":29,"h":32},
+	"frame": {"x":170,"y":0,"w":29,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":29,"h":32},
@@ -10,15 +10,23 @@
 },
 {
 	"filename": "pickup1",
-	"frame": {"x":165,"y":0,"w":32,"h":30},
+	"frame": {"x":104,"y":0,"w":32,"h":30},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":30},
 	"sourceSize": {"w":32,"h":30}
 },
 {
+	"filename": "pickup2",
+	"frame": {"x":200,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+{
 	"filename": "pickup3",
-	"frame": {"x":198,"y":0,"w":32,"h":30},
+	"frame": {"x":137,"y":0,"w":32,"h":30},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":30},
@@ -26,7 +34,7 @@
 },
 {
 	"filename": "pickup4",
-	"frame": {"x":134,"y":0,"w":30,"h":32},
+	"frame": {"x":0,"y":33,"w":30,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":32},
@@ -42,7 +50,7 @@
 },
 {
 	"filename": "player1",
-	"frame": {"x":97,"y":33,"w":128,"h":128},
+	"frame": {"x":128,"y":33,"w":128,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
@@ -82,7 +90,7 @@
 },
 {
 	"filename": "playon",
-	"frame": {"x":0,"y":33,"w":96,"h":96},
+	"frame": {"x":31,"y":33,"w":96,"h":96},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":96,"h":96},
@@ -127,6 +135,6 @@
 	"format": "RGBA8888",
 	"size": {"w":256,"h":934},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:f8282629beaea3481c72b8f68eea9684:2c832213434f22818b484d72c8d132a1:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:07ba7c54fe118268564b1fb02a1b852c:c34a7805d5affce7da3bdcbb514b55c7:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

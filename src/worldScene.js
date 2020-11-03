@@ -41,6 +41,15 @@ export default class WorldScene extends Phaser.Scene {
         pickup.currentAngle = Math.random() * 360;
         pickup.jumpOffset = 0;
         pickup.jumpForce = 16;
+        pickup.value = 1;
+      }
+      for (let i = 0; i < this.pickup2level; i += 1) {
+        const pickup = this.add.sprite(512, 288, 'sprites', 'pickup2');
+        this.pickups.push(pickup);
+        pickup.currentAngle = Math.random() * 360;
+        pickup.jumpOffset = 0;
+        pickup.jumpForce = 16;
+        pickup.value = 10;
       }
     }, this);
     this.player = this.add.sprite(512, 150, 'sprites', 'player1');
@@ -104,6 +113,24 @@ export default class WorldScene extends Phaser.Scene {
       }
     }, this);
     this.pickup1level = 1;
+
+    this.pickup2cost = 900;
+    this.pickup2costText = this.add.text(50, 120, this.pickup2cost, {
+      fontSize: '128px',
+      fontFamily: 'font',
+    }).setOrigin(0, 0.5);
+    this.pickup2Button = this.add.sprite(20, 120, 'sprites', 'pickup2');
+    this.pickup2Button.setInteractive();
+    this.pickup2Button.on('pointerdown', (e) => {
+      if (this.pickup2cost < this.point) {
+        this.point -= this.pickup2cost;
+        this.pickup2cost *= 2;
+        this.pickup2level += 1;
+        this.pickup2costText.text = this.pickup2cost;
+        this.pointText.text = this.point;
+      }
+    }, this);
+    this.pickup2level = 0;
   }
 
   /**
@@ -120,6 +147,15 @@ export default class WorldScene extends Phaser.Scene {
         pickup.currentAngle = Math.random() * 360;
         pickup.jumpOffset = 0;
         pickup.jumpForce = 16;
+        pickup.value = 1;
+      }
+      for (let i = 0; i < this.pickup2level; i += 1) {
+        const pickup = this.add.sprite(512, 288, 'sprites', 'pickup2');
+        this.pickups.push(pickup);
+        pickup.currentAngle = Math.random() * 360;
+        pickup.jumpOffset = 0;
+        pickup.jumpForce = 16;
+        pickup.value = 10;
       }
       this.autotime = 0;
     }
@@ -160,7 +196,7 @@ export default class WorldScene extends Phaser.Scene {
       ) < 60) {
         this.pickups.splice(this.pickups.indexOf(pickup), 1);
         pickup.destroy();
-        this.point += 1;
+        this.point += pickup.value;
         this.pointText.text = this.point;
       }
     });
