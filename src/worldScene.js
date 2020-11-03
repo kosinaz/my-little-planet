@@ -20,7 +20,6 @@ export default class WorldScene extends Phaser.Scene {
    * @memberof WorldScene
    */
   create() {
-    this.cameras.main.fadeIn(100);
     const stars = this.add.group({
       key: 'sprites',
       frame: ['star1', 'star2', 'star3', 'star4'],
@@ -34,6 +33,14 @@ export default class WorldScene extends Phaser.Scene {
       star.scale = Math.random() * 0.2 + 0.2;
     });
     this.planet = this.add.sprite(512, 288, 'sprites', 'planet');
+    this.planet.setInteractive();
+    this.planet.on('pointerdown', (e) => {
+      const pickup = this.add.sprite(512, 288, 'sprites', 'pickup1');
+      this.pickups.push(pickup);
+      pickup.currentAngle = Math.random() * 360;
+      pickup.jumpOffset = 0;
+      pickup.jumpForce = 16;
+    }, this);
     this.player = this.add.sprite(512, 150, 'sprites', 'player1');
     this.player.currentAngle = -90;
     this.anims.create({
@@ -53,13 +60,11 @@ export default class WorldScene extends Phaser.Scene {
     });
     this.player.play('player');
     this.pickups = [];
-    this.input.on('pointerdown', (e) => {
-      const pickup = this.add.sprite(512, 288, 'sprites', 'pickup1');
-      this.pickups.push(pickup);
-      pickup.currentAngle = Math.random() * 360;
-      pickup.jumpOffset = 0;
-      pickup.jumpForce = 16;
-    }, this);
+    this.point = 0;
+    this.pointText = this.add.text(512, 20, '0', {
+      fontSize: '124px',
+      fontFamily: 'font',
+    }).setOrigin(0.5);
   }
 
   /**
@@ -101,9 +106,12 @@ export default class WorldScene extends Phaser.Scene {
 
       // eslint-disable-next-line new-cap
       if (Phaser.Math.Distance.Between(
-          pickup.x, pickup.y, this.player.x, this.player.y
+          pickup.x, pickup.y, this.player.x, this.player.y,
       ) < 60) {
+        this.pickups.splice(this.pickups.indexOf(pickup), 1);
         pickup.destroy();
+        this.point += 1;
+        this.pointText.text = this.point;
       }
     });
 
